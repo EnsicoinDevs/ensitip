@@ -1,13 +1,13 @@
-ENSITIP
+<p>ENSITIP</p>
 
-structure d'un compte:
+<p>structure d'un compte:</p>
 
-  id discord
-  clef publique
-  clef privée
-  dernière transaction de 'stockage' (tx_in)
-    outpoint
-      hash
-      index (0 par defaut)
-    (script length)--> se recalcule
-    script --> signature + pubkey
+<p>  id discord</p>
+<p>  clef publique</p>
+<p>  clef privée</p>
+<p>  dernière transaction de 'stockage' (tx_in)</p>
+<p>    outpoint</p>
+<p>      hash</p>
+<p>      index (0 par defaut)</p>
+<p>    (script length)--> se recalcule</p>
+<p>    script --> signature + pubkey</p>

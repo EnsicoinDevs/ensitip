@@ -2,6 +2,9 @@
 import discord
 import json
 
+import account_manager as am
+import transaction_maker as tm
+
 TOKEN = 'NDczMTM5NjgwOTI2MjM2Njc0.XPqSzg.oyeh9B6doL8IjYAaCaskeXhLeck'
 
 client = discord.Client()
@@ -35,7 +38,7 @@ async def on_message(message):
                 await message.channel.send("coin")
             if arg.startswith("voir"):
                 await message.channel.send("usage: ensitip voir\n")
-                await message.channel.send("renvoie la clef publique de votre wallet ensipy ainsi que le nombre d'ensicoins qu'il contient\n")
+                await message.channel.send("envoie en MP les clefs de votre wallet ensipy ainsi que le nombre d'ensicoins qu'il contient\n")
                 await message.channel.send("c'est utile pour y déposer des ensicoins avec votre vraie clef privée, ou verifier combien on peut se permettre de tipper\n")
             if arg.startswith("cree"):
                 await message.channel.send("usage: ensitip cree")
@@ -58,17 +61,18 @@ async def on_message(message):
             comptes = json.load(f)["comptes"]
             f.close()
 
-            nom = message.author
+            client = message.author
+            nom = str(client)
+            chan = client.dm_channel
 
             if nom not in comptes:
                 await message.channel.send("vous n'avez malheureusement pas encore de compte ensitip")
             else:
-                await message.channel.send("nom: {}".format(comptes[nom]["nom"]))
-                await message.channel.send("clef: {}".format(comptes[nom]["clef"]))
-                await message.channel.send("montant: {}".format(comptes[nom]["balance"]))
+                await chan.send("clef publique: {}".format(comptes[nom]["clef_pub"]))
+                await chan.send("clef privée: {}".format(comptes[nom]["clef_priv"]))
 
         elif options.startswith("cree"):
-            await message.channel.send("creation de compte initialisée")
+            await message.channel.send("compte créé, utilisez la commande 'voir' pour recupérer ses informations")
             await message.channel.send("TODO: utiliser ensicoin-cli pour creer un compte")
 
         else:

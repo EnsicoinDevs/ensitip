@@ -17,10 +17,10 @@ async def on_message(message):
         msg = "utilisez 'ensitip aide' pour obtenir la liste des commandes utilisables"
         await message.channel.send(msg)
 
-    if message.content[0:7]=='ensitip ':
+    if message.content[0:8]=='ensitip ':
 
         #msg = 'Salut, {0.author.mention}'.format(message)
-        options = message.content[7:]
+        options = message.content[8:]
 
         if options.startswith("aide "):
             arg = options[5:]
@@ -37,6 +37,10 @@ async def on_message(message):
                 await message.channel.send("usage: ensitip voir\n")
                 await message.channel.send("renvoie la clef publique de votre wallet ensipy ainsi que le nombre d'ensicoins qu'il contient\n")
                 await message.channel.send("c'est utile pour y déposer des ensicoins avec votre vraie clef privée, ou verifier combien on peut se permettre de tipper\n")
+            if arg.startswith("cree"):
+                await message.channel.send("usage: ensitip cree")
+                await message.channel.send("cree une paire de clef ensicoin et un compte ensitip lié a votre nom discord.")
+                await message.channel.send("(n'oubliez pas de recuperer vos ensicoins avant de changer de nom discord)")
 
         elif options.startswith("aide"):
             await message.channel.send("liste des commandes légales:")
@@ -51,16 +55,21 @@ async def on_message(message):
 
         elif options.startswith("voir"):
             f = open("comptes.json","r")
-            data = f.read()
+            comptes = json.load(f)["comptes"]
             f.close()
 
-            comptes = json.load(data)["comptes"]
             nom = message.author
 
             if nom not in comptes:
                 await message.channel.send("vous n'avez malheureusement pas encore de compte ensitip")
             else:
-                await message.channel.send("nom:")
+                await message.channel.send("nom: {}".format(comptes[nom]["nom"]))
+                await message.channel.send("clef: {}".format(comptes[nom]["clef"]))
+                await message.channel.send("montant: {}".format(comptes[nom]["balance"]))
+
+        elif options.startswith("cree"):
+            await message.channel.send("creation de compte initialisée")
+            await message.channel.send("TODO: utiliser ensicoin-cli pour creer un compte")
 
         else:
             await message.channel.send("utilisez 'ensitip aide' pour obtenir la liste des commandes utilisables")

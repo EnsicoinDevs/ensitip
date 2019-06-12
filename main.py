@@ -1,14 +1,17 @@
 #! /usr/bin/python
 import discord
 import json
+import grpc
 
 import account_manager as am
 import transaction_maker as tm
+import node_pb2_grpc
 
 TOKEN = 'NDczMTM5NjgwOTI2MjM2Njc0.XPqSzg.oyeh9B6doL8IjYAaCaskeXhLeck'
 
 client = discord.Client()
-
+channel = grpc.insecure_channel("localhost:4225")
+stub = node_pb2_grpc.NodeStub(channel)
 
 @client.event
 async def on_message(message):

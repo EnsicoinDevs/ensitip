@@ -32,12 +32,20 @@ def prepare_tx(emitter, receiver, amount):
     inputs_count = len(inputs)
 
     if amount == nb_esc:
-        outputs = [am.make_tx_out(receiver, amount)]
-        emitter.set_tx_in(None)
+        gift = am.make_tx_out(receiver, amount)
+        outputs = translator.Var_array([gift])
+
+        am.reset_tx_in(emitter)
+        am.add_tx_in(receiver, gift)
+
     else:
         stock = am.make_tx_out(emitter, nb_esc-amount)
-        outputs = [am.make_tx_out(receiver, amount), stock]
-        emitter.set_tx_in(stock)
+        gift = am.make_tx_out(receiver, amount)
+        outputs = translator.Var_array([gift, stock])
+
+        am.reset_tx_in(emitter)
+        am.add_tx_in(emitter, stock)
+        am.add_tx_in(receiver, gift)
 
     tx.create(version, flags_count, flags, inputs_count, inputs, outputs_count, outputs)
 

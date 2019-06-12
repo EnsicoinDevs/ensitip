@@ -5,7 +5,7 @@
  - id discord
  - clef publique
  - clef privée
- - dernière transaction de 'stockage' (tx_in)
+ - liste de tx_in:
     - outpoint
 	- hash
 	- index (0 par defaut)

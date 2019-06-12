@@ -1,5 +1,5 @@
 {
   "comptes":{
-    "johynpapin#1476":{"clef_pub":"abc123", "clef_priv":"321cba", "solde":0, "tx_in":{"hash":"bdadab22", "index":0, "script":"?"}}
+    "johynpapin#1476":{"clef_pub":"abc123", "clef_priv":"321cba", "solde":0, "tx_in":[{"hash":"bdadab22", "index":0, "script":"?"}, {"hash":"4227", "index":0, "script":"?"}]}
   }
 }

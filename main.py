@@ -9,20 +9,21 @@ TOKEN = 'NDczMTM5NjgwOTI2MjM2Njc0.XPqSzg.oyeh9B6doL8IjYAaCaskeXhLeck'
 
 client = discord.Client()
 
+
 @client.event
 async def on_message(message):
-    print(message.author);
+    print(message.author)
     # we do not want the bot to reply to itself
     if message.author == client.user:
         return
 
-    if message.content=='ensitip':
+    if message.content == 'ensitip':
         msg = "utilisez 'ensitip aide' pour obtenir la liste des commandes utilisables"
         await message.channel.send(msg)
 
-    if message.content[0:8]=='ensitip ':
+    if message.content[0:8] == 'ensitip ':
 
-        #msg = 'Salut, {0.author.mention}'.format(message)
+        # msg = 'Salut, {0.author.mention}'.format(message)
         options = message.content[8:]
 
         if options.startswith("aide "):
@@ -57,7 +58,7 @@ async def on_message(message):
             await message.channel.send("coin")
 
         elif options.startswith("voir"):
-            f = open("comptes.json","r")
+            f = open("comptes.json", "r")
             comptes = json.load(f)["comptes"]
             f.close()
 
@@ -77,8 +78,6 @@ async def on_message(message):
 
         else:
             await message.channel.send("utilisez 'ensitip aide' pour obtenir la liste des commandes utilisables")
-
-
 
 
 @client.event

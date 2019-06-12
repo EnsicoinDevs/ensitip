@@ -41,8 +41,7 @@ def get_tx_in(name):
 
         liste_de_tx_in.append(new_tx_in)
 
-
-    return translator.Var_array(liste_de_tx_in)
+    return liste_de_tx_in
 
 
 def make_tx_out(receiver, amount):

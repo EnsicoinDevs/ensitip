@@ -33,7 +33,7 @@ def prepare_tx(emitter, receiver, amount):
 
     if amount == nb_esc:
         gift = am.make_tx_out(receiver, amount)
-        outputs = translator.Var_array([gift])
+        outputs = [gift]
 
         am.reset_tx_in(emitter)
         am.add_tx_in(receiver, gift)
@@ -41,7 +41,7 @@ def prepare_tx(emitter, receiver, amount):
     else:
         stock = am.make_tx_out(emitter, nb_esc-amount)
         gift = am.make_tx_out(receiver, amount)
-        outputs = translator.Var_array([gift, stock])
+        outputs = [gift, stock]
 
         am.reset_tx_in(emitter)
         am.add_tx_in(emitter, stock)

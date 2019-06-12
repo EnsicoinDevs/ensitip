@@ -15,9 +15,10 @@ stub = node_pb2_grpc.NodeStub(channel)
 
 @client.event
 async def on_message(message):
+    global client
     print(message.author)
-    # we do not want the bot to reply to itself
-    if message.author == client.user:
+
+    if message.author == client.user: #message.author == bot: would replie to himself
         return
 
     if message.content == 'ensitip':

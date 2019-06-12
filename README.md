@@ -1,6 +1,6 @@
-#ENSITIP
+# ENSITIP
 
-##structure d'un compte:
+## structure d'un compte:
 
  - id discord
  - clef publique

@@ -21,7 +21,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='ensicoin_rpc',
   syntax='proto3',
   serialized_options=None,
-  serialized_pb=_b('\n\nnode.proto\x12\x0c\x65nsicoin_rpc\"#\n\x07\x41\x64\x64ress\x12\n\n\x02ip\x18\x01 \x01(\t\x12\x0c\n\x04port\x18\x02 \x01(\r\".\n\x04Peer\x12&\n\x07\x61\x64\x64ress\x18\x01 \x01(\x0b\x32\x15.ensicoin_rpc.Address\"\'\n\x08Outpoint\x12\x0c\n\x04hash\x18\x01 \x01(\x0c\x12\r\n\x05index\x18\x02 \x01(\r\"J\n\x07TxInput\x12/\n\x0fprevious_output\x18\x01 \x01(\x0b\x32\x16.ensicoin_rpc.Outpoint\x12\x0e\n\x06script\x18\x02 \x01(\x0c\")\n\x08TxOutput\x12\r\n\x05value\x18\x01 \x01(\x04\x12\x0e\n\x06script\x18\x02 \x01(\x0c\"\x82\x01\n\x02Tx\x12\x0f\n\x07version\x18\x01 \x01(\r\x12\r\n\x05\x66lags\x18\x02 \x03(\t\x12%\n\x06inputs\x18\x03 \x03(\x0b\x32\x15.ensicoin_rpc.TxInput\x12\'\n\x07outputs\x18\x04 \x03(\x0b\x32\x16.ensicoin_rpc.TxOutput\x12\x0c\n\x04hash\x18\x05 \x01(\x0c\"\xb0\x01\n\x05\x42lock\x12\x0c\n\x04hash\x18\x01 \x01(\x0c\x12\x0f\n\x07version\x18\x02 \x01(\r\x12\r\n\x05\x66lags\x18\x03 \x03(\t\x12\x12\n\nprev_block\x18\x04 \x01(\x0c\x12\x13\n\x0bmerkle_root\x18\x05 \x01(\x0c\x12\x11\n\ttimestamp\x18\x06 \x01(\x04\x12\x0e\n\x06height\x18\x07 \x01(\r\x12\x0e\n\x06target\x18\x08 \x01(\x0c\x12\x1d\n\x03txs\x18\t \x03(\x0b\x32\x10.ensicoin_rpc.Tx\"v\n\rBlockTemplate\x12\x0f\n\x07version\x18\x01 \x01(\r\x12\r\n\x05\x66lags\x18\x02 \x03(\t\x12\x12\n\nprev_block\x18\x03 \x01(\x0c\x12\x11\n\ttimestamp\x18\x04 \x01(\x04\x12\x0e\n\x06height\x18\x05 \x01(\r\x12\x0e\n\x06target\x18\x06 \x01(\x0c\"+\n\x05Reply\x12\"\n\x05\x65rror\x18\x01 \x01(\x0e\x32\x13.ensicoin_rpc.Error\"\x10\n\x0eGetInfoRequest\"u\n\x0cGetInfoReply\x12\x16\n\x0eimplementation\x18\x01 \x01(\t\x12\x18\n\x10protocol_version\x18\x02 \x01(\r\x12\x17\n\x0f\x62\x65st_block_hash\x18\x03 \x01(\x0c\x12\x1a\n\x12genesis_block_hash\x18\x04 \x01(\x0c\"%\n\x13PublishRawTxRequest\x12\x0e\n\x06raw_tx\x18\x01 \x01(\x0c\"\x13\n\x11PublishRawTxReply\"+\n\x16PublishRawBlockRequest\x12\x11\n\traw_block\x18\x01 \x01(\x0c\"\x16\n\x14PublishRawBlockReply\"\x19\n\x17GetBlockTemplateRequest\"k\n\x15GetBlockTemplateReply\x12\x33\n\x0e\x62lock_template\x18\x01 \x01(\x0b\x32\x1b.ensicoin_rpc.BlockTemplate\x12\x1d\n\x03txs\x18\x02 \x03(\x0b\x32\x10.ensicoin_rpc.Tx\"%\n\x15GetBlockByHashRequest\x12\x0c\n\x04hash\x18\x01 \x01(\x0c\"9\n\x13GetBlockByHashReply\x12\"\n\x05\x62lock\x18\x01 \x01(\x0b\x32\x13.ensicoin_rpc.Block\"\"\n\x12GetTxByHashRequest\x12\x0c\n\x04hash\x18\x01 \x01(\x0c\"0\n\x10GetTxByHashReply\x12\x1c\n\x02tx\x18\x01 \x01(\x0b\x32\x10.ensicoin_rpc.Tx\"6\n\x12\x43onnectPeerRequest\x12 \n\x04peer\x18\x01 \x01(\x0b\x32\x12.ensicoin_rpc.Peer\"\x12\n\x10\x43onnectPeerReply\"9\n\x15\x44isconnectPeerRequest\x12 \n\x04peer\x18\x01 \x01(\x0b\x32\x12.ensicoin_rpc.Peer\"\x15\n\x13\x44isconnectPeerReply\"\x16\n\x14GetBestBlocksRequest\"\"\n\x12GetBestBlocksReply\x12\x0c\n\x04hash\x18\x01 \x01(\x0c*\x19\n\x05\x45rror\x12\x10\n\x0cINVALID_DATA\x10\x00\x32\x9f\x06\n\x04Node\x12\x45\n\x07GetInfo\x12\x1c.ensicoin_rpc.GetInfoRequest\x1a\x1a.ensicoin_rpc.GetInfoReply\"\x00\x12T\n\x0cPublishRawTx\x12!.ensicoin_rpc.PublishRawTxRequest\x1a\x1f.ensicoin_rpc.PublishRawTxReply\"\x00\x12]\n\x0fPublishRawBlock\x12$.ensicoin_rpc.PublishRawBlockRequest\x1a\".ensicoin_rpc.PublishRawBlockReply\"\x00\x12\x62\n\x10GetBlockTemplate\x12%.ensicoin_rpc.GetBlockTemplateRequest\x1a#.ensicoin_rpc.GetBlockTemplateReply\"\x00\x30\x01\x12Z\n\x0eGetBlockByHash\x12#.ensicoin_rpc.GetBlockByHashRequest\x1a!.ensicoin_rpc.GetBlockByHashReply\"\x00\x12Q\n\x0bGetTxByHash\x12 .ensicoin_rpc.GetTxByHashRequest\x1a\x1e.ensicoin_rpc.GetTxByHashReply\"\x00\x12Q\n\x0b\x43onnectPeer\x12 .ensicoin_rpc.ConnectPeerRequest\x1a\x1e.ensicoin_rpc.ConnectPeerReply\"\x00\x12Z\n\x0e\x44isconnectPeer\x12#.ensicoin_rpc.DisconnectPeerRequest\x1a!.ensicoin_rpc.DisconnectPeerReply\"\x00\x12Y\n\rGetBestBlocks\x12\".ensicoin_rpc.GetBestBlocksRequest\x1a .ensicoin_rpc.GetBestBlocksReply\"\x00\x30\x01\x62\x06proto3')
+  serialized_pb=_b('\n\nnode.proto\x12\x0c\x65nsicoin_rpc\"#\n\x07\x41\x64\x64ress\x12\n\n\x02ip\x18\x01 \x01(\t\x12\x0c\n\x04port\x18\x02 \x01(\r\".\n\x04Peer\x12&\n\x07\x61\x64\x64ress\x18\x01 \x01(\x0b\x32\x15.ensicoin_rpc.Address\"\'\n\x08Outpoint\x12\x0c\n\x04hash\x18\x01 \x01(\x0c\x12\r\n\x05index\x18\x02 \x01(\r\"J\n\x07TxInput\x12/\n\x0fprevious_output\x18\x01 \x01(\x0b\x32\x16.ensicoin_rpc.Outpoint\x12\x0e\n\x06script\x18\x02 \x01(\x0c\")\n\x08TxOutput\x12\r\n\x05value\x18\x01 \x01(\x04\x12\x0e\n\x06script\x18\x02 \x01(\x0c\"\x82\x01\n\x02Tx\x12\x0f\n\x07version\x18\x01 \x01(\r\x12\r\n\x05\x66lags\x18\x02 \x03(\t\x12%\n\x06inputs\x18\x03 \x03(\x0b\x32\x15.ensicoin_rpc.TxInput\x12\'\n\x07outputs\x18\x04 \x03(\x0b\x32\x16.ensicoin_rpc.TxOutput\x12\x0c\n\x04hash\x18\x05 \x01(\x0c\"\xb0\x01\n\x05\x42lock\x12\x0c\n\x04hash\x18\x01 \x01(\x0c\x12\x0f\n\x07version\x18\x02 \x01(\r\x12\r\n\x05\x66lags\x18\x03 \x03(\t\x12\x12\n\nprev_block\x18\x04 \x01(\x0c\x12\x13\n\x0bmerkle_root\x18\x05 \x01(\x0c\x12\x11\n\ttimestamp\x18\x06 \x01(\x04\x12\x0e\n\x06height\x18\x07 \x01(\r\x12\x0e\n\x06target\x18\x08 \x01(\x0c\x12\x1d\n\x03txs\x18\t \x03(\x0b\x32\x10.ensicoin_rpc.Tx\"v\n\rBlockTemplate\x12\x0f\n\x07version\x18\x01 \x01(\r\x12\r\n\x05\x66lags\x18\x02 \x03(\t\x12\x12\n\nprev_block\x18\x03 \x01(\x0c\x12\x11\n\ttimestamp\x18\x04 \x01(\x04\x12\x0e\n\x06height\x18\x05 \x01(\r\x12\x0e\n\x06target\x18\x06 \x01(\x0c\"+\n\x05Reply\x12\"\n\x05\x65rror\x18\x01 \x01(\x0e\x32\x13.ensicoin_rpc.Error\"\x10\n\x0eGetInfoRequest\"u\n\x0cGetInfoReply\x12\x16\n\x0eimplementation\x18\x01 \x01(\t\x12\x18\n\x10protocol_version\x18\x02 \x01(\r\x12\x17\n\x0f\x62\x65st_block_hash\x18\x03 \x01(\x0c\x12\x1a\n\x12genesis_block_hash\x18\x04 \x01(\x0c\"%\n\x13PublishRawTxRequest\x12\x0e\n\x06raw_tx\x18\x01 \x01(\x0c\"\x13\n\x11PublishRawTxReply\"+\n\x16PublishRawBlockRequest\x12\x11\n\traw_block\x18\x01 \x01(\x0c\"\x16\n\x14PublishRawBlockReply\"\x19\n\x17GetBlockTemplateRequest\"k\n\x15GetBlockTemplateReply\x12\x33\n\x0e\x62lock_template\x18\x01 \x01(\x0b\x32\x1b.ensicoin_rpc.BlockTemplate\x12\x1d\n\x03txs\x18\x02 \x03(\x0b\x32\x10.ensicoin_rpc.Tx\"%\n\x15GetBlockByHashRequest\x12\x0c\n\x04hash\x18\x01 \x01(\x0c\"9\n\x13GetBlockByHashReply\x12\"\n\x05\x62lock\x18\x01 \x01(\x0b\x32\x13.ensicoin_rpc.Block\"\"\n\x12GetTxByHashRequest\x12\x0c\n\x04hash\x18\x01 \x01(\x0c\"0\n\x10GetTxByHashReply\x12\x1c\n\x02tx\x18\x01 \x01(\x0b\x32\x10.ensicoin_rpc.Tx\"6\n\x12\x43onnectPeerRequest\x12 \n\x04peer\x18\x01 \x01(\x0b\x32\x12.ensicoin_rpc.Peer\"\x12\n\x10\x43onnectPeerReply\"9\n\x15\x44isconnectPeerRequest\x12 \n\x04peer\x18\x01 \x01(\x0b\x32\x12.ensicoin_rpc.Peer\"\x15\n\x13\x44isconnectPeerReply\"\x16\n\x14GetBestBlocksRequest\"\"\n\x12GetBestBlocksReply\x12\x0c\n\x04hash\x18\x01 \x01(\x0c\"\x11\n\x0fGetNewTxRequest\"-\n\rGetNewTxReply\x12\x1c\n\x02tx\x18\x01 \x01(\x0b\x32\x10.ensicoin_rpc.Tx*\x19\n\x05\x45rror\x12\x10\n\x0cINVALID_DATA\x10\x00\x32\xeb\x06\n\x04Node\x12\x45\n\x07GetInfo\x12\x1c.ensicoin_rpc.GetInfoRequest\x1a\x1a.ensicoin_rpc.GetInfoReply\"\x00\x12T\n\x0cPublishRawTx\x12!.ensicoin_rpc.PublishRawTxRequest\x1a\x1f.ensicoin_rpc.PublishRawTxReply\"\x00\x12]\n\x0fPublishRawBlock\x12$.ensicoin_rpc.PublishRawBlockRequest\x1a\".ensicoin_rpc.PublishRawBlockReply\"\x00\x12\x62\n\x10GetBlockTemplate\x12%.ensicoin_rpc.GetBlockTemplateRequest\x1a#.ensicoin_rpc.GetBlockTemplateReply\"\x00\x30\x01\x12Z\n\x0eGetBlockByHash\x12#.ensicoin_rpc.GetBlockByHashRequest\x1a!.ensicoin_rpc.GetBlockByHashReply\"\x00\x12Q\n\x0bGetTxByHash\x12 .ensicoin_rpc.GetTxByHashRequest\x1a\x1e.ensicoin_rpc.GetTxByHashReply\"\x00\x12Q\n\x0b\x43onnectPeer\x12 .ensicoin_rpc.ConnectPeerRequest\x1a\x1e.ensicoin_rpc.ConnectPeerReply\"\x00\x12Z\n\x0e\x44isconnectPeer\x12#.ensicoin_rpc.DisconnectPeerRequest\x1a!.ensicoin_rpc.DisconnectPeerReply\"\x00\x12Y\n\rGetBestBlocks\x12\".ensicoin_rpc.GetBestBlocksRequest\x1a .ensicoin_rpc.GetBestBlocksReply\"\x00\x30\x01\x12J\n\x08GetNewTx\x12\x1d.ensicoin_rpc.GetNewTxRequest\x1a\x1b.ensicoin_rpc.GetNewTxReply\"\x00\x30\x01\x62\x06proto3')
 )
 
 _ERROR = _descriptor.EnumDescriptor(
@@ -37,8 +37,8 @@ _ERROR = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   serialized_options=None,
-  serialized_start=1554,
-  serialized_end=1579,
+  serialized_start=1620,
+  serialized_end=1645,
 )
 _sym_db.RegisterEnumDescriptor(_ERROR)
 
@@ -1009,6 +1009,61 @@ _GETBESTBLOCKSREPLY = _descriptor.Descriptor(
   serialized_end=1552,
 )
 
+
+_GETNEWTXREQUEST = _descriptor.Descriptor(
+  name='GetNewTxRequest',
+  full_name='ensicoin_rpc.GetNewTxRequest',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1554,
+  serialized_end=1571,
+)
+
+
+_GETNEWTXREPLY = _descriptor.Descriptor(
+  name='GetNewTxReply',
+  full_name='ensicoin_rpc.GetNewTxReply',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='tx', full_name='ensicoin_rpc.GetNewTxReply.tx', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      serialized_options=None, file=DESCRIPTOR),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  serialized_options=None,
+  is_extendable=False,
+  syntax='proto3',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=1573,
+  serialized_end=1618,
+)
+
 _PEER.fields_by_name['address'].message_type = _ADDRESS
 _TXINPUT.fields_by_name['previous_output'].message_type = _OUTPOINT
 _TX.fields_by_name['inputs'].message_type = _TXINPUT
@@ -1021,6 +1076,7 @@ _GETBLOCKBYHASHREPLY.fields_by_name['block'].message_type = _BLOCK
 _GETTXBYHASHREPLY.fields_by_name['tx'].message_type = _TX
 _CONNECTPEERREQUEST.fields_by_name['peer'].message_type = _PEER
 _DISCONNECTPEERREQUEST.fields_by_name['peer'].message_type = _PEER
+_GETNEWTXREPLY.fields_by_name['tx'].message_type = _TX
 DESCRIPTOR.message_types_by_name['Address'] = _ADDRESS
 DESCRIPTOR.message_types_by_name['Peer'] = _PEER
 DESCRIPTOR.message_types_by_name['Outpoint'] = _OUTPOINT
@@ -1048,6 +1104,8 @@ DESCRIPTOR.message_types_by_name['DisconnectPeerRequest'] = _DISCONNECTPEERREQUE
 DESCRIPTOR.message_types_by_name['DisconnectPeerReply'] = _DISCONNECTPEERREPLY
 DESCRIPTOR.message_types_by_name['GetBestBlocksRequest'] = _GETBESTBLOCKSREQUEST
 DESCRIPTOR.message_types_by_name['GetBestBlocksReply'] = _GETBESTBLOCKSREPLY
+DESCRIPTOR.message_types_by_name['GetNewTxRequest'] = _GETNEWTXREQUEST
+DESCRIPTOR.message_types_by_name['GetNewTxReply'] = _GETNEWTXREPLY
 DESCRIPTOR.enum_types_by_name['Error'] = _ERROR
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
@@ -1240,6 +1298,20 @@ GetBestBlocksReply = _reflection.GeneratedProtocolMessageType('GetBestBlocksRepl
   ))
 _sym_db.RegisterMessage(GetBestBlocksReply)
 
+GetNewTxRequest = _reflection.GeneratedProtocolMessageType('GetNewTxRequest', (_message.Message,), dict(
+  DESCRIPTOR = _GETNEWTXREQUEST,
+  __module__ = 'node_pb2'
+  # @@protoc_insertion_point(class_scope:ensicoin_rpc.GetNewTxRequest)
+  ))
+_sym_db.RegisterMessage(GetNewTxRequest)
+
+GetNewTxReply = _reflection.GeneratedProtocolMessageType('GetNewTxReply', (_message.Message,), dict(
+  DESCRIPTOR = _GETNEWTXREPLY,
+  __module__ = 'node_pb2'
+  # @@protoc_insertion_point(class_scope:ensicoin_rpc.GetNewTxReply)
+  ))
+_sym_db.RegisterMessage(GetNewTxReply)
+
 
 
 _NODE = _descriptor.ServiceDescriptor(
@@ -1248,8 +1320,8 @@ _NODE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=1582,
-  serialized_end=2381,
+  serialized_start=1648,
+  serialized_end=2523,
   methods=[
   _descriptor.MethodDescriptor(
     name='GetInfo',
@@ -1330,6 +1402,15 @@ _NODE = _descriptor.ServiceDescriptor(
     containing_service=None,
     input_type=_GETBESTBLOCKSREQUEST,
     output_type=_GETBESTBLOCKSREPLY,
+    serialized_options=None,
+  ),
+  _descriptor.MethodDescriptor(
+    name='GetNewTx',
+    full_name='ensicoin_rpc.Node.GetNewTx',
+    index=9,
+    containing_service=None,
+    input_type=_GETNEWTXREQUEST,
+    output_type=_GETNEWTXREPLY,
     serialized_options=None,
   ),
 ])

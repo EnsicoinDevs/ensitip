@@ -59,6 +59,11 @@ class NodeStub(object):
         request_serializer=node__pb2.GetBestBlocksRequest.SerializeToString,
         response_deserializer=node__pb2.GetBestBlocksReply.FromString,
         )
+    self.GetNewTx = channel.unary_stream(
+        '/ensicoin_rpc.Node/GetNewTx',
+        request_serializer=node__pb2.GetNewTxRequest.SerializeToString,
+        response_deserializer=node__pb2.GetNewTxReply.FromString,
+        )
 
 
 class NodeServicer(object):
@@ -128,6 +133,13 @@ class NodeServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def GetNewTx(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_NodeServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -175,6 +187,11 @@ def add_NodeServicer_to_server(servicer, server):
           servicer.GetBestBlocks,
           request_deserializer=node__pb2.GetBestBlocksRequest.FromString,
           response_serializer=node__pb2.GetBestBlocksReply.SerializeToString,
+      ),
+      'GetNewTx': grpc.unary_stream_rpc_method_handler(
+          servicer.GetNewTx,
+          request_deserializer=node__pb2.GetNewTxRequest.FromString,
+          response_serializer=node__pb2.GetNewTxReply.SerializeToString,
       ),
   }
   generic_handler = grpc.method_handlers_generic_handler(

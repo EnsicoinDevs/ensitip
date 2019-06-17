@@ -1,6 +1,50 @@
 #! /usr/bin/python
 import json
 import translator
+import hashlib
+import random
+
+
+
+def generate_alea_hex():
+    return hex(random.randint(0,15))[2:]
+
+
+def create_new_account(name):
+
+    name = str(name)
+
+    f = open("comptes.json", "r")
+    comptes = json.load(f)["comptes"]
+    f.close()
+
+    if name in comptes:
+        return "il existe déjà un compte lié a votre ID discord. Utilisez 'ensitip voir' pour récupérer ses informations"
+
+    comptes[name]={}
+
+    priv_key = ''
+    for _ in range(40):
+        priv_key += generate_alea_hex()
+    comptes[name]["clef_priv"] = priv_key
+    print("clef privée: " + comptes[name]["clef_priv"])
+
+    h = hashlib.new('ripemd160')
+    h.update(priv_key.encode())
+    comptes[name]["clef_pub"] = h.hexdigest()
+    print("clef publique: " + comptes[name]["clef_pub"])
+
+    comptes[name]["solde"] = 0
+
+    comptes[name]["tx_in"] = []
+
+    data = {}
+    data["comptes"] = comptes
+    f = open("comptes.json", "w")
+    f.write(json.dumps(data, indent=4))
+    f.close()
+
+    return "compte créé, utilisez 'ensitip voir' pour récupérer ses informations"
 
 
 def get_accounts():
@@ -72,7 +116,7 @@ def reset_tx_in(name):
     comptes[name][tx_in] = []
 
     f = open("comptes.json", "w")
-    comptes = json.dumps(f)["comptes"]
+    json.dump(comptes, f)
     f.close()
 
 

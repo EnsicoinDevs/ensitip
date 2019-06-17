@@ -66,9 +66,12 @@ async def on_message(message):
             comptes = json.load(f)["comptes"]
             f.close()
 
-            client = message.author
-            nom = str(client)
-            chan = client.dm_channel
+            auth = message.author
+            nom = str(auth)
+            chan = auth.dm_channel
+            if chan is None:
+                await auth.create_dm()
+                chan = auth.dm_channel
 
             if nom not in comptes:
                 await message.channel.send("vous n'avez malheureusement pas encore de compte ensitip")
@@ -77,8 +80,8 @@ async def on_message(message):
                 await chan.send("clef privée: {}".format(comptes[nom]["clef_priv"]))
 
         elif options.startswith("cree"):
-            await message.channel.send("compte créé, utilisez la commande 'voir' pour recupérer ses informations")
-            await message.channel.send("TODO: utiliser ensicoin-cli pour creer un compte")
+            msg = am.create_new_account(message.author)
+            await message.channel.send(msg)
 
         else:
             await message.channel.send("utilisez 'ensitip aide' pour obtenir la liste des commandes utilisables")

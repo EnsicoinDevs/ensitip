@@ -9,6 +9,8 @@ import random
 def generate_alea_hex():
     return hex(random.randint(0,15))[2:]
 
+def account_exists(name):
+    return
 
 def create_new_account(name):
 
@@ -93,9 +95,9 @@ def make_tx_out(receiver, amount):
 
     pub_key = get_pub_key(receiver)
 
-    script = chr(0x64) + chr(0xa0) + hash160(pub_key) + chr(0x78) + chr(0x8c) + chr(0xaa)
+    script = chr(0x64) + chr(0xa0) + str(hash(pub_key)) + chr(0x78) + chr(0x8c) + chr(0xaa)
     #         OP_DUP    OP_HASH160 <hash160(pubKey)> OP_EQUAL OP_VERIFY OP_CHECKSIG
-
+                                 #CHANGER FCT HASH
     tx_out.create(amount, script)
 
     return tx_out

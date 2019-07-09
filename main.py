@@ -16,28 +16,32 @@ stub = node_pb2_grpc.NodeStub(channel)
 @client.event
 async def on_message(message):
     global client
-    print(message.author)
 
     if message.author == client.user: #message.author == bot: would replie to himself
         return
 
-    if message.content == 'ensitip':
+
+
+    if message.content.lower() == 'ensitip':
+        print(str(message.author) + " : " + str(message.content))
         msg = "utilisez 'ensitip aide' pour obtenir la liste des commandes utilisables"
         await message.channel.send(msg)
 
-    if message.content[0:8] == 'ensitip ':
 
+
+    if message.content[0:8].lower() == 'ensitip ':
+        print(str(message.author) + " : " + str(message.content))
         # msg = 'Salut, {0.author.mention}'.format(message)
         options = message.content[8:]
 
         if options.startswith("aide "):
             arg = options[5:]
             if arg.startswith("tip"):
-                await message.channel.send("usage: ensitip tip <destinataire> <x>")
+                await message.channel.send('usage: ensitip tip <destinataire> <x>')
                 await message.channel.send("envoie x ensicoins au destinataire")
                 await message.channel.send("le destinataire est une mention discord")
-                await message.channel.send("par exemple: 'ensipy tip @xX_rolandgrozdu122_Xx 27'")
-                await message.channel.send("enverrait 27 ensicoins a l'utilisateur @xX_rolandgrozdu22_Xx")
+                await message.channel.send('par exemple:  ensitip tip @xX_rolandgrozdu35_Xx 27')
+                await message.channel.send("enverrait 27 ensicoins a l'utilisateur @xX_rolandgrozdu35_Xx")
             if arg.startswith("coin"):
                 await message.channel.send("usage: ensitip coin")
                 await message.channel.send("coin")
@@ -50,6 +54,8 @@ async def on_message(message):
                 await message.channel.send("cree une paire de clef ensicoin et un compte ensitip lié a votre nom discord.")
                 await message.channel.send("(n'oubliez pas de recuperer vos ensicoins avant de changer de nom discord)")
 
+
+
         elif options.startswith("aide"):
             await message.channel.send("liste des commandes légales:")
             await message.channel.send("|   tip")
@@ -58,8 +64,12 @@ async def on_message(message):
             await message.channel.send("|   cree")
             await message.channel.send("utilisez 'ensitip aide <commande>' pour recevoir plus d'informations sur son usage")
 
+
+
         elif options.startswith("coin"):
             await message.channel.send("coin")
+
+
 
         elif options.startswith("voir"):
             f = open("comptes.json", "r")
@@ -67,7 +77,7 @@ async def on_message(message):
             f.close()
 
             auth = message.author
-            nom = str(auth)
+            nom = str(auth.id)
             chan = auth.dm_channel
             if chan is None:
                 await auth.create_dm()
@@ -79,9 +89,60 @@ async def on_message(message):
                 await chan.send("clef publique: {}".format(comptes[nom]["clef_pub"]))
                 await chan.send("clef privée: {}".format(comptes[nom]["clef_priv"]))
 
+
+
         elif options.startswith("cree"):
-            msg = am.create_new_account(message.author)
+            msg = am.create_new_account(message.author.id)
             await message.channel.send(msg)
+
+
+
+        elif options.startswith("tip"):
+            auth = message.author
+            emitter = str(auth.id)
+
+            donnees = options[4:]
+            if len(donnees) != 0:
+
+                if donnees[0] == " ": #pour les utilisateurs de mobiles
+                    donnees = donnees[1:]
+
+                if donnees.startswith('<@'):
+                    destinataire = ""
+                    i = 2
+
+                    while i<len(donnees) and donnees[i] != '>':
+                        destinataire = destinataire + str(donnees[i])
+                        i+=1
+
+                    if i > len(donnees):
+                        await message.channel.send("vous êtes un petit rigolo qui a mis un '<' avant un destinataire mal formaté pour essayer de me tromper è_é")
+
+                    elif i+1 > len(donnees):
+                        await message.channel.send("vous avez oublié le montant")
+
+                    else:
+                        num = donnees[i+1:]
+                        try:
+                            num = int(num)
+                        except:
+                            await message.channel.send("le montant n'est pas un entier è_é")
+
+                        try:
+                            destinataire = int(destinataire)
+                        except:
+                            await message.channel.send("l'id du destinataire n'est pas un entier è_é")
+                        await message.channel.send("done :3")
+                        #transaction = tm.prepare_tx(emitter, destinataire, num)
+                        #print(transaction) #remplacer par du grpc pour l'envoyer
+
+                else:
+                    await message.channel.send("avez-vous bien *mentionné* le destinataire ?")
+
+            else:
+                await message.channel.send("vous avez oublié le destinataire")
+
+
 
         else:
             await message.channel.send("utilisez 'ensitip aide' pour obtenir la liste des commandes utilisables")

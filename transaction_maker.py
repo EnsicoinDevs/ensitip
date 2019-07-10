@@ -1,7 +1,7 @@
 #! /usr/bin/python
 
 import account_manager as am
-import node_pb2
+import node_pb2 as np
 
 import translator
 
@@ -13,13 +13,17 @@ def tip(emitter, receiver, amount, grpc_stub):
     if amount < nb_esc:
         return False
     raw_tx = prepare_tx(emitter, receiver, amount)
-    grpc_stub.PublishRawTx(node_pb2.PublishRawTxRequest(raw_tx=raw_tx))
+    grpc_stub.PublishRawTx(np.PublishRawTxRequest(raw_tx=raw_tx))
     return True
 
 
 def prepare_tx(emitter, receiver, amount):
 
-    tx = translator.Transaction()
+
+    op = np.Outpoint(hash="han", index=0)
+    tx_in = np.TxInput(previous_output=op, script="honk")
+    tx_out= np.TxOutput(value = amount, script="mouimouimoui")
+    tx = np.Tx(version=0, flags=[],)
 
     nb_esc = am.get_balance(emitter)
 

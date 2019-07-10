@@ -5,13 +5,21 @@ import grpc
 
 import account_manager as am
 import transaction_maker as tm
-import node_pb2_grpc
+import node_pb2_grpc as npg
+import node_pb2 as np
 
 TOKEN = 'NDczMTM5NjgwOTI2MjM2Njc0.XPqSzg.oyeh9B6doL8IjYAaCaskeXhLeck'
 
 client = discord.Client()
 channel = grpc.insecure_channel("localhost:4225")
-stub = node_pb2_grpc.NodeStub(channel)
+stub = npg.NodeStub(channel)
+
+addr = np.Address(ip = "78.248.188.120", port= 4224)
+pair = np.Peer(address = addr)
+
+stub.ConnectPeer(np.ConnectPeerRequest(peer = pair))
+stub.GetBestBlocks(np.GetBestBlocksRequest())
+
 
 @client.event
 async def on_message(message):
@@ -111,6 +119,9 @@ async def on_message(message):
                     destinataire = ""
                     i = 2
 
+                    if donnees[i] == "!": #pour les utilisateurs PC
+                        i=i+1
+
                     while i<len(donnees) and donnees[i] != '>':
                         destinataire = destinataire + str(donnees[i])
                         i+=1
@@ -123,18 +134,25 @@ async def on_message(message):
 
                     else:
                         num = donnees[i+1:]
+                        test_num =False
+                        test_nom =False
                         try:
                             num = int(num)
+                            test_num = True
                         except:
                             await message.channel.send("le montant n'est pas un entier è_é")
 
                         try:
                             destinataire = int(destinataire)
+                            test_nom = True
                         except:
                             await message.channel.send("l'id du destinataire n'est pas un entier è_é")
-                        await message.channel.send("done :3")
-                        #transaction = tm.prepare_tx(emitter, destinataire, num)
-                        #print(transaction) #remplacer par du grpc pour l'envoyer
+
+                        if test_num and test_nom:
+
+                            await message.channel.send("tentative de transaction :3")
+
+                            tip(emitter, destinataire, num, stub)
 
                 else:
                     await message.channel.send("avez-vous bien *mentionné* le destinataire ?")
